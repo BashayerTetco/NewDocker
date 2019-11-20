@@ -1,0 +1,10 @@
+sudo: required #need to give it super admin
+
+services:
+  - docker
+
+before-install:
+  - docker build -t bashayer/docker-react -f Dockerfile.dev . # we build test with tag bahsayer/docker-react to abel to run it in next step
+
+script:
+  - docker run bashayer/docker-react npm run test -- --coverage # -- --coverage is to exite after test
