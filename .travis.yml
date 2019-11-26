@@ -9,3 +9,16 @@ before-install:
 script:
  # - docker run bashayer/docker-react npm run test -- --coverage # -- --coverage is to exite after test (didnot work with me)
  - docker run -e CI=true bashayer/docker-react npm run test
+ 
+deploy:
+ provider: elasticbeanstalk
+ region: "ap-southeast-2"
+ app: "MyFirstDocker"
+ env: "Myfirstdocker-env"
+ bucket_name: "elasticbeanstalk-ap-southeast-2-171462072859"
+ bucket_path: "MyFirstDocker"
+ on:
+  branch: master
+access_key_id: "$AWS_ACCESS_KEY"
+secret_access_key:
+ secure: "$AWS_SECRET_KEY"
